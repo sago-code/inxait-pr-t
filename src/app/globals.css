@@ -15,6 +15,12 @@
     --foreground: #ededed;
   }
 }
+#disable,.disable{
+  display: none;
+}
+.active{
+  display: block;
+}
 
 body {
   background-color: var(--background-light);
@@ -31,4 +37,95 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.Invali{
+  border: 2px solid #ce1c13 !important;
+}
+
+.Invali-Label{color: #ce1c13;}
+
+.codigoUser{
+  display: flex;
+  width: 80%;
+  background-color: #3a3a3abd;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 14%;
+  border-radius: 50px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.codigoUser .succes{
+  color: rgb(9, 134, 9);
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: 'Arial Black';
+  filter: drop-shadow(#fff);
+}
+
+.codigoUser .code{
+  color: #fff;
+}
+
+.codigoUser .succes svg{
+  color: rgb(209, 178, 5);
+  margin-right: 10px;
+}
+
+.derecha{
+  transform: translate(-100%, 0px);
+  animation-name: derecha;
+  animation-duration: 500ms;
+  animation-delay: 300ms;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes derecha {
+  0%{
+    transform: translate(-100%, 0px);
+    opacity: 0;
+  }100%{
+    transform: translate(0%, 0px);
+    opacity: 1;
+  }
+}
+
+.izquierda{
+  transform: translate(100%, 0px);
+  animation-name: izquierda;
+  animation-duration: 500ms;
+  animation-delay: 300ms;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes izquierda {
+  0%{
+    transform: translate(100%, 0px);
+    opacity: 0;
+  }100%{
+    transform: translate(0%, 0px);
+    opacity: 1;
+  }
+}
+
+.infoUser{
+  padding: 50px !important;
+}
+
+.infoUser table{
+  height: 100%;
+}
+
+.infoUser tr *{
+  border: 2px solid;
+  padding-left: 10px;
 }
