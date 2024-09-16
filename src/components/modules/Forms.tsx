@@ -1,17 +1,91 @@
 'use client';
-
-import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-// Definir los tipos
-type Departamento = 'Bogotá' | 'Antioquia' | 'Cundinamarca';
+// Define the type for all Colombian departments
+// Define the type for all Colombian departments
+type Departamento =
+  | 'Amazonas'
+  | 'Antioquia'
+  | 'Arauca'
+  | 'Atlántico'
+  | 'Bolívar'
+  | 'Boyacá'
+  | 'Caldas'
+  | 'Caquetá'
+  | 'Casanare'
+  | 'Cauca'
+  | 'Cesar'
+  | 'Chocó'
+  | 'Córdoba'
+  | 'Cundinamarca'
+  | 'Bogotá DC'
+  | 'Guainía'
+  | 'Guaviare'
+  | 'Guerrero'
+  | 'Huila'
+  | 'La Guajira'
+  | 'Magdalena'
+  | 'Meta'
+  | 'Nariño'
+  | 'Norte de Santander'
+  | 'Putumayo'
+  | 'Quindío'
+  | 'Risaralda'
+  | 'San Andrés y Providencia'
+  | 'Santander'
+  | 'Sucre'
+  | 'Tolima'
+  | 'Valle del Cauca'
+  | 'Vaupés'
+  | 'Vichada';
 
-const departamentos: Departamento[] = ['Bogotá', 'Antioquia', 'Cundinamarca'];
+// Define the departments array
+const departamentos: Departamento[] = [
+  'Amazonas', 'Antioquia', 'Arauca', 'Atlántico', 'Bolívar', 'Boyacá', 'Caldas',
+  'Caquetá', 'Casanare', 'Cauca', 'Cesar', 'Chocó', 'Córdoba', 'Cundinamarca',
+  'Bogotá DC', 'Guainía', 'Guaviare', 'Guerrero', 'Huila', 'La Guajira', 'Magdalena',
+  'Meta', 'Nariño', 'Norte de Santander', 'Putumayo', 'Quindío', 'Risaralda',
+  'San Andrés y Providencia', 'Santander', 'Sucre', 'Tolima', 'Valle del Cauca', 
+  'Vaupés', 'Vichada'
+];
+
+// Define cities and municipalities for each department
 const ciudades: Record<Departamento, string[]> = {
-  Bogotá: ['Bogotá D.C.'],
-  Antioquia: ['Medellín', 'Envigado'],
-  Cundinamarca: ['Soacha', 'Chía']
+  Amazonas: ['Leticia', 'Puerto Nariño'],
+  Antioquia: ['Medellín', 'Envigado', 'Itagüí', 'Rionegro', 'Sabaneta', 'Turbo', 'Bello'],
+  Arauca: ['Arauca', 'Arauquita', 'Saravena'],
+  Atlántico: ['Barranquilla', 'Soledad', 'Malambo', 'Galapa', 'Sabanagrande'],
+  Bolívar: ['Cartagena', 'Magangué', 'Turbana', 'Sincelejo'],
+  Boyacá: ['Tunja', 'Sogamoso', 'Duitama', 'Chiquinquirá'],
+  'Bogotá DC': ['Bogotá DC'],
+  Caldas: ['Manizales', 'Villamaría', 'Chinchiná', 'Neira'],
+  Caquetá: ['Florencia', 'El Doncello', 'La Montañita'],
+  Casanare: ['Yopal', 'Aguazul', 'Támara', 'Hato Corozal'],
+  Cauca: ['Popayán', 'Cauca', 'Páez', 'Timbío'],
+  Cesar: ['Valledupar', 'La Jagua de Ibirico', 'Bosconia'],
+  Chocó: ['Quibdó', 'Istmina', 'Riosucio'],
+  Córdoba: ['Montería', 'Planeta Rica', 'Lorica'],
+  Cundinamarca: ['Chía', 'Soacha', 'Cajicá', 'Funza', 'Zipaquirá', 'Facatativá'],
+  Guainía: ['Inírida'],
+  Guaviare: ['San José del Guaviare'],
+  Guerrero: ['San José del Guaviare'],
+  Huila: ['Neiva', 'Pitalito', 'La Plata'],
+  'La Guajira': ['Riohacha', 'Maicao', 'San Juan del Cesar'],
+  Magdalena: ['Santa Marta', 'Ciénaga', 'Aracataca'],
+  Meta: ['Villavicencio', 'Acacías', 'Cumaral'],
+  Nariño: ['Pasto', 'Tumaco', 'Ipiales'],
+  'Norte de Santander': ['Cúcuta', 'Pamplona', 'Ocaña'],
+  Putumayo: ['Mocoa'],
+  Quindío: ['Armenia', 'Montenegro', 'Salento'],
+  Risaralda: ['Pereira', 'Dosquebradas', 'Santa Rosa de Cabal'],
+  'San Andrés y Providencia': ['San Andrés', 'Providencia'],
+  Santander: ['Bucaramanga', 'Floridablanca', 'Girón'],
+  Sucre: ['Sincelejo', 'Corozal', 'Sampués'],
+  Tolima: ['Ibagué', 'Espinal', 'Honda'],
+  'Valle del Cauca': ['Cali', 'Palmira', 'Buga'],
+  Vaupés: ['Mitú'],
+  Vichada: ['Puerto Carreño']
 };
 
 // Función para generar un código alfanumérico
