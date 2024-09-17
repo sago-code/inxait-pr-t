@@ -15,7 +15,7 @@
     --foreground: #ededed;
   }
 }
-#disable,.disable{
+.disable{
   display: none;
 }
 .active{
